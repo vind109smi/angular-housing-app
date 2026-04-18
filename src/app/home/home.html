@@ -1,0 +1,84 @@
+<section class="home-container">
+  <h1 class="home-title">{{ title }}</h1>
+
+  <form class="search-form" #myForm="ngForm">
+    <!-- city search -->
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      name="filterText"
+      placeholder="Filter home by location"
+    />
+
+    <!-- price range-->
+    <input
+      type="number"
+      [(ngModel)]="minPrice"
+      name="minPrice"
+      placeholder="Min price"
+    />
+    <input
+      type="number"
+      [(ngModel)]="maxPrice"
+      name="maxPrice"
+      placeholder="Max price"
+    />
+
+    <!-- Bedrooms -->
+    <select [(ngModel)]="minBeds" name="minBeds">
+      <option [ngValue]="null">Any beds</option>
+      <option [ngValue]="1">1+ beds</option>
+      <option [ngValue]="2">2+ beds</option>
+      <option [ngValue]="3">3+ beds</option>
+      <option [ngValue]="4">4+ beds</option>
+    </select>
+
+    <!-- Type -->
+    <select [(ngModel)]="homeType" name="homeType">
+      <option value="any">Any Type</option>
+      <option *ngFor="let type of uniqueHomeTypes" [value]="type">
+        {{ type | titlecase }}
+      </option>
+    </select>
+
+    <!-- Sort -->
+    <select [(ngModel)]="sortOption" name="sortOption">
+      <option value="priceAsc">Price: Low → High</option>
+      <option value="priceDesc">Price: High → Low</option>
+      <option value="ratingDesc">Rating: Best first</option>
+      <option value="newest">Newest listings</option>
+    </select>
+
+    <!-- <button class="primary" type="submit">Apply Filters</button> -->
+    <button type="button" class="secondary" (click)="resetFilters()">
+      Reset
+    </button>
+  </form>
+
+  <div class="grid-gallery">
+    <div *ngFor="let home of filteredHomes" (click)="openDetails(home)">
+      <app-housing-location [home]="home"></app-housing-location>
+    </div>
+  </div>
+
+  <app-housing-detail-modal
+    [home]="selectedHome"
+    [visible]="showModal"
+    [childOpen]="showRealtorModal"
+    (close)="closeModal()"
+    (viewRealtor)="openRealtorModal($event)"
+  ></app-housing-detail-modal>
+
+  <app-realtor-profile-modal
+    [realtor]="selectedRealtor"
+    [visible]="showRealtorModal"
+    (close)="closeRealtorModal()"
+  >
+  </app-realtor-profile-modal>
+</section>
+<hr />
+<app-mortgage-calculator></app-mortgage-calculator>
+
+<div class="bottomMoreInfoBtn">
+  <button (click)="viewMore()" class="moreInfoBtn">See More Info</button>
+</div>

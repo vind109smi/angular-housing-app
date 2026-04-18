@@ -1,0 +1,55 @@
+.mortgage-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    label {
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.4rem;
+    }
+
+    button {
+      margin-top: 0.75rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+
+      &:first-of-type {
+        background: #00a86b;
+        color: white;
+      }
+
+      &:last-of-type {
+        background: #ccc;
+      }
+    }
+  }
+
+  .result {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #1a7730;
+  }
+}

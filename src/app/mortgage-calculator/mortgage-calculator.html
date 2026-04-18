@@ -1,0 +1,47 @@
+<section class="mortgage-container">
+  <h2>🏦 Mortgage Calculator</h2>
+
+  <form (ngSubmit)="calculateMortgage()">
+    <label>Home Price ($)</label>
+    <input
+      type="number"
+      [(ngModel)]="price"
+      name="price"
+      placeholder="Enter home price"
+      required
+    />
+
+    <label>Down Payment ($)</label>
+    <input
+      type="number"
+      [(ngModel)]="downPayment"
+      name="downPayment"
+      placeholder="Enter down payment"
+    />
+
+    <label>Interest Rate (%)</label>
+    <input
+      type="number"
+      step="0.01"
+      [(ngModel)]="interestRate"
+      name="interestRate"
+      placeholder="e.g. 6.5"
+      required
+    />
+
+    <label>Loan Term (Years)</label>
+    <select [(ngModel)]="loanTerm" name="loanTerm">
+      <option *ngFor="let y of [10, 15, 20, 25, 30]" [value]="y">
+        {{ y }}
+      </option>
+    </select>
+
+    <button type="submit">Calculate</button>
+    <button type="button" (click)="resetCalculator()">Reset</button>
+  </form>
+
+  <div *ngIf="monthlyPayment" class="result">
+    <h3>Your Monthly Payment:</h3>
+    <p>${{ monthlyPayment.toFixed(2) }}</p>
+  </div>
+</section>

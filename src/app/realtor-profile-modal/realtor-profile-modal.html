@@ -1,0 +1,32 @@
+<div class="modal-overlay" *ngIf="visible">
+  <div class="modal-content">
+    <button class="close-btn" (click)="close.emit()">X</button>
+    <!-- main realtor profile section-->
+    <div class="profile-body">
+      <img [src]="getRealtorImage()" class="avatar" alt="{{ realtor?.name }}" />
+      <h2>{{realtor?.name}}</h2>
+      <p>
+        <strong>Experience: </strong>{{ realtor?.experience || 'N/A' }} years
+      </p>
+      <p>
+        <strong>Specialties: </strong>{{ realtor?.specialties?.join(', ') ||
+        'N/A' }}
+      </p>
+      <p><strong>Email: </strong>{{ realtor?.email || 'N/A' }}</p>
+      <p><strong>Rating:</strong> ⭐ {{ realtor?.rating || 'N/A' }}</p>
+
+      <!-- reviews section-->
+      <div class="reviews" *ngIf="realtor?.reviews?.length">
+        <h4>Recent Reviews</h4>
+        <ul>
+          <li *ngFor="let review of realtor?.reviews">{{ review }}</li>
+        </ul>
+      </div>
+
+      <!-- what if no reviews -->
+      <div class="reviews" *ngIf="!realtor?.reviews?.length">
+        <p>Sorry, no reviews available.</p>
+      </div>
+    </div>
+  </div>
+</div>

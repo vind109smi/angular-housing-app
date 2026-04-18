@@ -1,0 +1,61 @@
+<div class="modal-overlay" *ngIf="visible">
+  <div class="modal-content" [class.dimmed]="childOpen">
+    <button
+      class="close-btn"
+      (click)="onClose()"
+      [disabled]="childOpen"
+      [class.disabled]="childOpen"
+    >
+      X
+    </button>
+
+    <div class="modal-body">
+      <div class="image-section">
+        <img [src]="home.image" [alt]="home.city" />
+      </div>
+
+      <div class="info-section">
+        <h2>{{ home.city }}</h2>
+        <p class="price">${{ home.price | number }}</p>
+        <p class="desc">{{ home.description }}</p>
+
+        <div class="finance">
+          <p><strong>Down Payment:</strong> ${{ downPayment | number }}</p>
+          <p>
+            <strong>Est. Monthly Payment:</strong>
+            ${{ monthlyPayment | number: '1.0-0' }}
+          </p>
+          <p><strong>Interest Rate:</strong> 6% (30-year fixed)</p>
+        </div>
+
+        <div class="realtor">
+          <h4>Realtor Contact</h4>
+          <p><strong>Name:</strong> {{ home.realtor?.name }}</p>
+          <p><strong>Phone:</strong> {{ home.realtor?.phone }}</p>
+          <p><strong>Email:</strong> {{ home.realtor?.email }}</p>
+          <p>
+            <strong>Rating:</strong>
+            <span class="stars">
+              <ng-container *ngFor="let star of [1,2,3,4,5]">
+                <span [class.filled]="star <= home.realtor?.rating">★</span>
+              </ng-container>
+            </span>
+            ({{ home.realtor?.rating || 'N/A' }})
+          </p>
+
+          <!-- realtor link -->
+          <p>
+            <strong>View profile:</strong>
+            <a
+              href="#"
+              (click)="openRealtorProfile(home.realtor); $event.preventDefault()"
+              class="realtorLink"
+            >
+              {{ home.realtor?.name }}
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
