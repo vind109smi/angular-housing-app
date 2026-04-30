@@ -89,7 +89,7 @@ export class Home implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.form.valueChanges
       ?.pipe(
-        debounceTime(2000),
+        debounceTime(1000),
         // tap((data) => console.log(data)),
         takeUntil(this.destroy$)
       )
