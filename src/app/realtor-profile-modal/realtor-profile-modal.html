@@ -1,7 +1,6 @@
 <div class="modal-overlay" *ngIf="visible">
   <div class="modal-content">
     <button class="close-btn" (click)="close.emit()">X</button>
-    <!-- main realtor profile section-->
     <div class="profile-body">
       <img [src]="getRealtorImage()" class="avatar" alt="{{ realtor?.name }}" />
       <h2>{{realtor?.name}}</h2>
@@ -15,7 +14,6 @@
       <p><strong>Email: </strong>{{ realtor?.email || 'N/A' }}</p>
       <p><strong>Rating:</strong> ⭐ {{ realtor?.rating || 'N/A' }}</p>
 
-      <!-- reviews section-->
       <div class="reviews" *ngIf="realtor?.reviews?.length">
         <h4>Recent Reviews</h4>
         <ul>
@@ -23,7 +21,6 @@
         </ul>
       </div>
 
-      <!-- what if no reviews -->
       <div class="reviews" *ngIf="!realtor?.reviews?.length">
         <p>Sorry, no reviews available.</p>
       </div>

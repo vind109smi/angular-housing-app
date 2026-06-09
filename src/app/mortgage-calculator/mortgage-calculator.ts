@@ -14,14 +14,11 @@ export class MortgageCalculator {
   downPayment: number | null = null;
   monthlyPayment: number | null = null;
   interestRate: number | null = null;
-  loanTerm: number = 30; // years
+  loanTerm: number = 30;
 
-  // calculate Mortage
   calculateMortgage() {
-    // what if price is not listed neither is interest rate
     if (this.price == null || this.interestRate == null) return;
 
-    //calcuate principal, monthlyRate, totalPayments, numerator, denominator etc.
     const principal = this.price - (this.downPayment || 0);
     const monthlyRate = this.interestRate / 100 / 12;
     const totalPayments = this.loanTerm * 12;
@@ -34,7 +31,6 @@ export class MortgageCalculator {
     this.monthlyPayment = numerator / denominator;
   }
 
-  //reset calculator
   resetCalculator() {
     this.price = null;
     this.downPayment = null;

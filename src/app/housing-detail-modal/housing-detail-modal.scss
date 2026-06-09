@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  overflow-y: auto; // allow scroll when modal taller than viewport
-  padding: 20px; // prevent modal cutoff near top and bottom
+  overflow-y: auto; 
+  padding: 20px; 
 }
 
 .modal-content {
@@ -32,7 +32,6 @@
   filter: blur(1px);
 }
 
-// organize image section
 .image-section img {
   width: 100%;
   height: 340px;
@@ -67,13 +66,11 @@
   cursor: not-allowed;
 }
 
-// infor section (main content inside modal)
 .info-section {
   padding: 20px;
   text-align: center;
 }
 
-// media queries for size
 @media (max-width: 768px) {
   .modal-content {
     max-width: 95%;
@@ -131,7 +128,6 @@
   }
 }
 
-// realtor scss:
 .realtorLink {
   color: #007bff;
   text-decoration: underline;

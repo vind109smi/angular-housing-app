@@ -5,14 +5,6 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./home/home').then((m) => m.Home),
   },
-  // in additon, you are loading the more details lazily.
-  {
-    path: 'more',
-    loadChildren: () =>
-      import('./more-details/more-details.routes').then(
-        (m) => m.moreDetailsRoutes
-      ),
-  },
   {
     path: 'realtor-profile',
     loadComponent: () =>
@@ -25,6 +17,5 @@ export const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full',
   },
-  { path: '**', redirectTo: '/home' }, // catch-all route for undefined paths
-  // handling lazy load routes
+  { path: '**', redirectTo: '/home' }, 
 ];

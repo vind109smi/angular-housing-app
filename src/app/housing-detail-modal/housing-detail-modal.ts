@@ -13,12 +13,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './housing-detail-modal.html',
   styleUrl: './housing-detail-modal.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush, // for optimization
+  changeDetection: ChangeDetectionStrategy.OnPush, 
 })
 export class HousingDetailModal {
   @Input() home: any;
   @Input() visible = false;
-  @Input() childOpen = false; // <- reflects if realtor modal is open
+  @Input() childOpen = false; 
 
   @Output() close = new EventEmitter<void>();
   @Output() viewRealtor = new EventEmitter<any>();
@@ -36,7 +36,6 @@ export class HousingDetailModal {
 
   onClose(): void {
     if (!this.childOpen) {
-      // uses external flag
       this.close.emit();
     }
   }

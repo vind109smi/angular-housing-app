@@ -39,21 +39,17 @@ export class Home implements OnInit, AfterViewInit {
   selectedHome: HomeModel | null = null;
   showModal = false;
 
-  // new props
   selectedRealtor: Realtor | null = null;
   showRealtorModal = false;
 
-  // new sorting/filtering
   minPrice: number | null = null;
   maxPrice: number | null = null;
   minBeds: number | null = null;
   homeType = 'any';
-  sortOption = 'priceAsc'; // default should be ascending
+  sortOption = 'priceAsc';
   uniqueHomeTypes: string[] = [];
 
-  // destroy
   private destroy$ = new Subject<void>();
-  // privateService = inject(Housing); // WHY I CANT USE THIS
 
   @ViewChild('myForm') form!: NgForm;
 
@@ -67,12 +63,10 @@ export class Home implements OnInit, AfterViewInit {
     this.housing.getHomes().subscribe((homes) => {
       this.homes = [...homes];
 
-      // apply unique home types
       this.uniqueHomeTypes = Array.from(
         new Set(this.homes.map((h) => h.type))
       ).sort();
 
-      // reset all filters every load
       this.filterText = '';
       this.minPrice = null;
       this.maxPrice = null;
@@ -80,19 +74,14 @@ export class Home implements OnInit, AfterViewInit {
       this.homeType = 'any';
       this.sortOption = 'priceAsc';
 
-      this.filteredHomes = this.housing.filterHomes(homes, this.getCriteria()); // initial load (should show grid gallery)
-      // manual change detection trigger
+      this.filteredHomes = this.housing.filterHomes(homes, this.getCriteria());
       this.cdr.markForCheck();
     });
   }
 
   ngAfterViewInit() {
     this.form.valueChanges
-      ?.pipe(
-        debounceTime(1000),
-        // tap((data) => console.log(data)),
-        takeUntil(this.destroy$)
-      )
+      ?.pipe(debounceTime(1000), takeUntil(this.destroy$))
       .subscribe(() => {
         this.filteredHomes = this.housing.filterHomes(
           this.homes,
@@ -100,7 +89,6 @@ export class Home implements OnInit, AfterViewInit {
         );
       });
 
-    // do we apply cdr? we load the data after subscribe when typing it.
     this.cdr.markForCheck();
   }
 
@@ -109,7 +97,6 @@ export class Home implements OnInit, AfterViewInit {
     this.destroy$.complete();
   }
 
-  // returning criteria object to resolve issues on this.housing.filterHomes() passing params
   private getCriteria(): FilterCriteria {
     return {
       filterText: this.filterText,
@@ -124,7 +111,6 @@ export class Home implements OnInit, AfterViewInit {
   filterHomes(event?: Event) {
     event?.preventDefault();
 
-    // Calling housing service's filterHomes
     this.filteredHomes = this.housing.filterHomes(
       this.homes,
       this.getCriteria()
@@ -150,25 +136,22 @@ export class Home implements OnInit, AfterViewInit {
     this.showRealtorModal = false;
   }
 
-  //resetting
   resetFilters() {
     this.filterText = '';
     this.minPrice = null;
     this.maxPrice = null;
     this.minBeds = null;
-    this.homeType = 'any'; // default option
-    this.sortOption = 'priceAsc'; // default option
+    this.homeType = 'any';
+    this.sortOption = 'priceAsc';
     this.filteredHomes = this.housing.filterHomes(
       this.homes,
       this.getCriteria()
     );
 
-    // scroll to top on reset
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // visit the more page
   viewMore(): void {
-    this.router.navigate(['/more']); // Navigate to the "more" route
+    this.router.navigate(['/more']);
   }
 }

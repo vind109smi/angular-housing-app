@@ -22,7 +22,6 @@ export interface Realtor {
   reviews?: string[];
 }
 
-// filter criteria
 export interface FilterCriteria {
   filterText: string;
   minPrice: number | null;

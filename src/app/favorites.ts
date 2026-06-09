@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Favorites {
-  // key
-  private key = 'favoriteHomes'; // this key is our local storage
+  private key = 'favoriteHomes';
 
   getFavorites(): any[] {
-    // store array of favorite homes that user chooses
-    const data = localStorage.getItem(this.key); // grab that key
+    const data = localStorage.getItem(this.key); 
     return data ? JSON.parse(data) : [];
   }
-
-  // isFavorite(home: )
 }

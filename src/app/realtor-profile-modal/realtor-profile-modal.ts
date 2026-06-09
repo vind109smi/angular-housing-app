@@ -10,7 +10,7 @@ import { Realtor } from '../interfaces/home.model';
   styleUrl: './realtor-profile-modal.scss',
 })
 export class RealtorProfileModal {
-  @Input() realtor: Realtor | null = null; // either we have realtor or set to null
+  @Input() realtor: Realtor | null = null; 
   @Input() visible = false;
   @Output() close = new EventEmitter<void>();
 

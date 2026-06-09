@@ -4,7 +4,7 @@
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 360px; /* keeps each card at a nice width */
+  max-width: 360px; 
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.3s ease;
 
@@ -39,7 +39,6 @@
     }
   }
 
-  // favorites styling:
   .favorite-btn {
     position: absolute;
     top: 12px;
@@ -57,5 +56,4 @@
       }
     }
   }
-  
 }

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FilterCriteria, HomeModel } from './interfaces/home.model';
-import { HttpClient } from '@angular/common/http'; // need to implement http client to make calls from backend
 
 @Injectable({
   providedIn: 'root',
 })
 export class Housing {
-  // apply in memory data inside service
   private homes = [
     {
       city: 'Lehigh, PA',
@@ -22,12 +20,11 @@ export class Housing {
         phone: '(555) 234-9087',
         email: 'sarah.thompson@realestate.com',
         rating: 4.2,
-        image: 'assets/brunette-lady.png', // will do later
+        image: 'assets/brunette-lady.png',
         reviews: [
           ' Sarah was an amazing realtor all the way, helping with our home experience',
           'Mrs.Thompson has demonstrated great professionalism and dedication throughout our home buying process.',
-          'Ideally good experience, however she gave expensive hourly rate and she would less often responde to text and emails',
-          'Horrible woman, when I called her, she hung up few times then one day rudely dismissed my request and I cancelled our appointment. Evil witch, do not take her',
+          'Good service overall, though some of the communication methods could have been better, overall nice person to be around with. ',
         ],
       },
       type: 'colonial',
@@ -45,15 +42,13 @@ export class Housing {
       realtor: {
         name: 'Matt Smith',
         experience: 10,
-        specialties: ['Beachfront expert', 'First time homies'],
+        specialties: ['Beachfront expert', 'First time home buyers'],
         phone: '(555) 672-9901',
         email: 'matt.smith@coastalhomes.com',
         rating: 4.6,
         image: 'assets/bold-guy.png',
         reviews: [
-          'Mr. Matt Smith was great dude, loves baseball and kids, also got good chat with him during our home buy. My wife and I loved his service',
-          'Boring person, and sometimes does not pay attention when I ask him in person and he is on his damn phone',
-          'Mr. Smith is a flat out racist, denied anything we accused him and threaten to take us to realty civil court. What load of horseshit!!',
+          'Matt provided helpful guidance throughout the home buying process and communicated clearly during each step.',
         ],
       },
       type: 'stucco',
@@ -77,9 +72,8 @@ export class Housing {
         rating: 4.8,
         image: 'assets/latina-woman.png',
         reviews: [
-          'Kind sweet women, would even bring a box of donuts and goodies on first meet',
-          'Had hard time understanding her since she has strong hispanic accent, but overall nice woman',
-          'Maria is a fun gal to have and love to hear more',
+          'Maria was welcoming and helpful throughout the property search process',
+          'While some of her options at first were difficult to navigate, she was patient and willing to help us throughout the process.',
         ],
       },
       type: 'flat',
@@ -145,12 +139,10 @@ export class Housing {
         phone: '(555)783-9908',
         email: 'kate.finnegan@gardenstatehomes.com',
         rating: 4.2,
-        image: 'assets/hot-woman.png',
         reviews: [
-          'Gorgeous, mild mannered 46 year old woman with fiery passion for her job.',
+          'Kate demonstrated strong professionalism and dedication throughout the home buying process.',
           'Kate was very helpful and responsive. She ensured to carry her mission to getting our new home!',
-          'Sweet lovely woman. Love to have her at any time',
-          'Often times, Mrs.Finnegan is loud and sometimes she does not speak much. She rarely answers my calls or texts. I do not like her!',
+          'Extraordinary professional. Always can count on her expertise!',
         ],
       },
       type: 'suburban',
@@ -174,12 +166,12 @@ export class Housing {
         rating: 4.1,
         image: 'assets/blonde-dude.png',
         reviews: [
-          'Rarely is available, mostly ignores my calls and texts',
-          'Do not fall for his scam, he says he is your brother and is with you, but he is never',
-          'Mr. Hogel is good with money and setting up schedules, but not flat honest with his customers on the locking deals',
+          'Dan helped coordinate showings and provided useful market insight for mountain-view properties.',
+          'He was knowledgeable about local neighborhoods and helped us compare several options.',
+          'Overall, the experience was organized and professional.',
         ],
       },
-      type: 'vinly',
+      type: 'vinyl',
       listedOn: '2020-12-31',
       bedrooms: 8,
       bathrooms: 4,
@@ -200,9 +192,7 @@ export class Housing {
         rating: 4.7,
         image: 'assets/beautiful-asian.png',
         reviews: [
-          'Great person to talk to and plus if you ask for her number, she will go out with you',
-          'Mrs. Su is a great attractive woman, has two daughters of her own and lives in nice lifestyle',
-          'Had one date with her and boy oh boy, great kisser',
+          'Great person to talk to and knows how to strike good housing deal.',
         ],
       },
       type: 'stronghold',
@@ -285,12 +275,10 @@ export class Housing {
     },
   ];
 
-  // grab homes
   getHomes(): Observable<HomeModel[]> {
-    return of(this.homes); // grabbing the list of homes.
+    return of(this.homes);
   }
 
-  // actual filtering
   filterHomes(homes: HomeModel[], criteria: FilterCriteria): HomeModel[] {
     const text = criteria.filterText.toLowerCase().trim();
 
@@ -322,7 +310,6 @@ export class Housing {
     return this.sortHomes(filtered, criteria.sortOption);
   }
 
-  // newly refurbished method
   private sortHomes(homes: HomeModel[], sortOption: string): HomeModel[] {
     return [...homes].sort((a, b) => {
       switch (sortOption) {
